@@ -257,13 +257,14 @@ class MarkdownBuilder implements md.NodeVisitor {
     }
 
     Uri uri = Uri.parse(path);
+    print('$path');
     Widget child;
     if (uri.scheme == 'http' || uri.scheme == 'https') {
       child = new Image.network(uri.toString(), width: width, height: height);
     } else if (uri.scheme == 'data') {
       child = _handleDataSchemeUri(uri, width, height);
     } else if (uri.scheme == "resource") {
-      child = new Image.asset(path.substring(9), width: width, height: height);
+      child = new Image.asset(path.substring(9), width: width, height: height,);
     } else {
       String filePath = (imageDirectory == null
           ? uri.toFilePath()
